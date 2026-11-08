@@ -1,0 +1,41 @@
+{
+  "skins": [
+    {
+      "id": "skin-7f92c7064df62685",
+      "name": "Италия",
+      "url": "/uploads/skins/skin-7f92c7064df62685.png",
+      "span": 5.948818897637795
+    },
+    {
+      "id": "skin-e44c0b5e15b8f0cf",
+      "name": "Аргентина",
+      "url": "/uploads/skins/skin-e44c0b5e15b8f0cf.png",
+      "span": 5.94488188976378
+    },
+    {
+      "id": "skin-284374a9c92ee533",
+      "name": "Германия",
+      "url": "/uploads/skins/skin-284374a9c92ee533.png",
+      "span": 6.01593625498008
+    },
+    {
+      "id": "skin-461e86b39f8197de",
+      "name": "Румыния",
+      "url": "/uploads/skins/skin-461e86b39f8197de.png",
+      "span": 6.088709677419355
+    },
+    {
+      "id": "skin-2597f0335adb8994",
+      "name": "Франция",
+      "url": "/uploads/skins/skin-2597f0335adb8994.png",
+      "span": 6.06425702811245
+    },
+    {
+      "id": "skin-f29f1b8d6557fb78",
+      "name": "Колумбия",
+      "url": "/uploads/skins/skin-f29f1b8d6557fb78.png",
+      "span": 6.163265306122449
+    }
+  ],
+  "backgrounds": []
+}

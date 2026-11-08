@@ -1,0 +1,1 @@
+const n=new Proxy({},{get:(_,e)=>{if(typeof window<"u"&&window.__VIPER_CONFIG__)return window.__VIPER_CONFIG__[e];(e==="supabase"||e==="lobbyApiUrl")&&console.error(`[CONFIG] Accessing "${e}" before window.__VIPER_CONFIG__ was set!`)}}),o=n;export{o as c};

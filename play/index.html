@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" data-i18n-title="app.name">
+  <head><script src="/static-storage.js"></script><script src="/static-runtime.js"></script><script>
+if('serviceWorker' in navigator){navigator.serviceWorker.getRegistrations().then(async regs=>{if(!regs.length)return;await Promise.all(regs.map(r=>r.unregister()));if(typeof caches!=='undefined')await Promise.all((await caches.keys()).map(k=>caches.delete(k)));location.reload();});}
+</script>
+    <!-- Eruda In-App Debugger (?debug param OR localStorage flag from burger menu easter egg) -->
+    <script>
+      (function() {
+        var shouldLoad = new URLSearchParams(window.location.search).has('debug');
+        try { shouldLoad = shouldLoad || localStorage.getItem('_eruda') === '1'; } catch {}
+        if (shouldLoad) {
+          window._erudaLoaded = true;
+          var script = document.createElement('script');
+          script.src = 'https://cdn.jsdelivr.net/npm/eruda@3.4.0/eruda.min.js';
+          script.onload = function() {
+            eruda.init();
+            var el = document.querySelector('.eruda-container, #eruda');
+            if (el) el.style.zIndex = '2147483647';
+          };
+          document.head.appendChild(script);
+        }
+      })();
+    </script>
+    
+    <script>document.documentElement.dataset.localViper="1";window.__LOCAL_VIPER__=true;window.__VIPER_RUNTIME__={"env": "production", "lobbyApiUrl": "/api/v1", "supabase": {"url": null, "anonKey": null}, "analytics": {}, "features": {"showGoogleAuth": false, "showCasinoAuth": false, "allowAnonymous": true, "useSolanaWallet": false, "useCardPayment": false, "useMobinexPay": false, "enableWaitingRoom": false, "enableLatencyHints": false, "foodResync": false}};</script>
+    
+
+    <meta charset="UTF-8" /><script src="/local-runtime.js"></script><script src="/locales.js"></script><script src="/native-locales.js"></script>
+    <meta
+      name="viewport"
+      content="width=device-width, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Viper Royale</title><link rel="icon" href="/icons/favicon.svg">
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html, body {
+        /* Game screen: nothing here is selectable text. Without these, an
+           iOS long-press (racing the JS touch handlers, or starting before
+           they attach) selects HUD elements — the joystick gets the blue
+           selection box + drag handle mid-game. */
+        -webkit-user-select: none;
+        user-select: none;
+        -webkit-touch-callout: none;
+        -webkit-tap-highlight-color: transparent;
+        /* On the ROOT on purpose: body-only overscroll-behavior stopped
+           propagating to the viewport in modern engines, so pull-to-refresh
+           and edge rubber-banding would survive it. */
+        overscroll-behavior: none;
+      }
+      /* Text fields must stay selectable on iOS or the caret/paste UI
+         breaks (promo code, profile name, wallet amount/address inputs all
+         mount over the game). `code` covers the deposit-address displays,
+         whose copy-button fallback is manual selection — restoring the
+         callout keeps their long-press menu alive. The `i` flag: HTML
+         treats contenteditable="FALSE" as false; CSS attribute matching is
+         case-sensitive without it. */
+      input, textarea, code, [contenteditable]:not([contenteditable="false" i]) {
+        -webkit-user-select: text;
+        user-select: text;
+        -webkit-touch-callout: default;
+      }
+      /* Eruda debug console (?debug): logs must stay copyable on-device. */
+      #eruda, .eruda-container {
+        -webkit-user-select: text;
+        user-select: text;
+      }
+      body {
+        background: #000;
+        overflow: hidden;
+      }
+      canvas {
+        display: block;
+      }
+      /* All steering/boost gestures belong to the game; never let the
+         browser's pan/zoom/double-tap recognizers compete for them.
+         Scoped to #game: overlay widgets (QR modals, captchas) may mount
+         their own canvases that need normal panning. */
+      #game {
+        touch-action: none;
+      }
+      html[data-local-hide-map="1"] #minimap-ui,
+      html[data-local-hide-map="1"] #live-leaderboard,
+      html[data-local-hide-map="1"] #tournament-leaderboard-ui,
+      html[data-local-mode="tournaments"] #cashout-btn,
+      html[data-local-mode="tournaments"] #cashout-progress-bar { display: none !important; }
+      #debug {
+        display: none;
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        color: #0f0;
+        font-family: monospace;
+        font-size: 12px;
+        z-index: 1000;
+        background: rgba(0, 0, 0, 0.7);
+        padding: 10px;
+        border-radius: 4px;
+      }
+      .disabled-replay-actions { display:none !important; }
+      .viper-hide-exit-hints .cashout-timer .timer-label { display:none !important; }
+    </style>
+    <script type="module" crossorigin src="/assets/env-C7vzROsb.js"></script>
+    <script type="module" crossorigin src="/assets/log-gate-B65wJFl9.js"></script>
+    <script type="module" crossorigin src="/assets/env-CscKmT_x.js"></script>
+    <script type="module" crossorigin src="/assets/env-BJel9_CM.js"></script>
+    <script type="module" crossorigin src="/assets/kyc-service-C_utPXUd.js"></script>
+    <script type="module" crossorigin src="/assets/index-BVfXPvtU.js"></script>
+    <script type="module" crossorigin src="/assets/index-DX65wbiK.js"></script>
+    <script type="module" crossorigin src="/assets/supabase-client-BHMtNnbv.js"></script>
+    <script type="module" crossorigin src="/assets/auth-manager-Cmpvns0S.js"></script>
+    <script type="module" crossorigin src="/assets/casino-gate-hyIVpKVx.js"></script>
+    <script type="module" crossorigin src="/assets/main-1ukjHe7P.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/i18n-CbjjPFRc.css">
+  </head>
+  <body data-page="play" data-platform="web">
+    <canvas id="game"></canvas>
+    <div id="debug">Loading...</div>
+  </body>
+</html>
